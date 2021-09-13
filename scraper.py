@@ -18,7 +18,9 @@ mango_shop_schema = {
         "color": {"type": "string"},
         "size": {"type": "array"},
     },
+    "required": ["name", "price", "color", "size"]
 }
+# //TODO put schema as external file
 
 
 def validateJson(jsonData):
