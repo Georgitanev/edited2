@@ -18,10 +18,10 @@ Scraper have a validator who checks variable types and if they are correct saves
 Installations:
 
 You can check your chrome version from Crome browser by clicking -> menu -> help -> About Google Chrome
-Download chrome driver that fits your chrome version from from https://sites.google.com/chromium.org/driver/downloads
+Download chrome driver that fits your chrome version from https://sites.google.com/chromium.org/driver/downloads
 extract the file in folder 'chromedriver_win32'
 
-Install requirements packages and python v 3.8
+Install requirements file with packages and python v 3.8
 ```sh
 pip install requirements.txt
 ```
