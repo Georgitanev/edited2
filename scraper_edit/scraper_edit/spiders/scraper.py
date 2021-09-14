@@ -22,6 +22,9 @@ def open_json(schema_path):
         return json.load(fh)
 
 
+mango_shop_schema = open_json(mango_shop_schema_path)
+
+
 class QuotesSpider(scrapy.Spider):
     name = "scraper_edit"
     start_urls = [
@@ -85,6 +88,7 @@ class QuotesSpider(scrapy.Spider):
             "color": color,
             "size": all_sizes_list
         }
+
         x = self.validateJson(validate_validate, mango_shop_schema)
         if x:
             yield {
