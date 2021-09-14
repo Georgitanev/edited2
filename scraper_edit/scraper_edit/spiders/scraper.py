@@ -1,3 +1,4 @@
+import json
 import os
 from time import sleep
 
@@ -9,17 +10,16 @@ from selenium import webdriver
 
 from ..items import ScraperEditItem
 
-mango_shop_schema = {
-    "type": "object",
-    "properties": {
-        "name": {"type": "string"},
-        "price": {"type": "number"},
-        "color": {"type": "string"},
-        "size": {"type": "array"},
-    },
-    "required": ["name", "price", "color", "size"]
-}
-# //TODO put schema as external file
+path = os.path.dirname(os.path.abspath(__file__))
+chrome_driver_path = os.path.join(path, "chromedriver_win32",
+                                  "chromedriver.exe")
+# schema path
+mango_shop_schema_path = os.path.join(path, "json_schema.json")
+
+
+def open_json(schema_path):
+    with open(schema_path, encoding="utf-8-sig") as fh:
+        return json.load(fh)
 
 
 class QuotesSpider(scrapy.Spider):
@@ -49,7 +49,13 @@ class QuotesSpider(scrapy.Spider):
         self.driver.set_window_size(1400, 1047)
         self.driver.get(response.url)
         # click button to accept cookies
-        self.driver.find_element_by_id("onetrust-accept-btn-handler").click()
+        # // TODO to put click for cookies on first page only.
+        # // And may be checker.
+        # // TODO after that they are accepted. Wait too much time for except
+        try:
+            self.driver.find_element_by_id("onetrust-accept-btn-handler").click()
+        except Exception as ex:
+            print(ex)
         # click menu with sizes
         self.driver.find_element_by_xpath(
             "//div[@id='sizeSelector']/span").click()
