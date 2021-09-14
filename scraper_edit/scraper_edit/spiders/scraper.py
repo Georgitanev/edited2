@@ -10,6 +10,8 @@ from selenium import webdriver
 
 from ..items import ScraperEditItem
 
+# //TODO put validation cheking through Scrapy items
+# https://github.com/scrapy-plugins/scrapy-jsonschema - validation info
 path = os.path.dirname(os.path.abspath(__file__))
 chrome_driver_path = os.path.join(path, "chromedriver_win32",
                                   "chromedriver.exe")
@@ -56,7 +58,8 @@ class QuotesSpider(scrapy.Spider):
         # // And may be checker.
         # // TODO after that they are accepted. Wait too much time for except
         try:
-            self.driver.find_element_by_id("onetrust-accept-btn-handler").click()
+            self.driver.find_element_by_id(
+                "onetrust-accept-btn-handler").click()
         except Exception as ex:
             print(ex)
         # click menu with sizes
@@ -92,7 +95,7 @@ class QuotesSpider(scrapy.Spider):
         x = self.validateJson(validate_validate, mango_shop_schema)
         if x:
             yield {
-                    "name": name,
-                    "price": price,
-                    "color": color,
-                    "size": all_sizes_list}
+                "name": name,
+                "price": price,
+                "color": color,
+                "size": all_sizes_list}
