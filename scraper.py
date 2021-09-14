@@ -6,21 +6,20 @@ from bs4 import BeautifulSoup as bs
 from jsonschema import validate
 from selenium import webdriver
 
+
 path = os.path.dirname(os.path.abspath(__file__))
 chrome_driver_path = os.path.join(path, "chromedriver_win32", "chromedriver.exe")
+filename = "shop_data.json"  # filename to save data
+# schema path
+mango_shop_schema_path = os.path.join(path, "json_schema.json")
 
-filename = "shop_data.json"
-mango_shop_schema = {
-    "type": "object",
-    "properties": {
-        "name": {"type": "string"},
-        "price": {"type": "number"},
-        "color": {"type": "string"},
-        "size": {"type": "array"},
-    },
-    "required": ["name", "price", "color", "size"]
-}
-# //TODO put schema as external file
+
+def open_json(schema_path):
+    with open(schema_path, encoding="utf-8-sig") as fh:
+        return json.load(fh)
+
+
+mango_shop_schema = open_json(mango_shop_schema_path)
 
 
 def validateJson(jsonData):
@@ -50,7 +49,10 @@ driver.set_window_size(1400, 1047)
 driver.get(
     "https://shop.mango.com/bg-en/women/skirts-midi/midi-satin-skirt_17042020.html?c=99")
 # click button to accept cookies
-driver.find_element_by_id("onetrust-accept-btn-handler").click()
+try:
+    driver.find_element_by_id("onetrust-accept-btn-handler").click()
+except Exception as ex:
+    print(ex)
 # click menu with sizes
 driver.find_element_by_xpath("//div[@id='sizeSelector']/span").click()
 
