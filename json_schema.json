@@ -1,0 +1,23 @@
+{
+    "properties": {
+        "color": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "price": {
+            "type": "number"
+        },
+        "size": {
+            "type": "array"
+        }
+    },
+    "required": [
+        "name",
+        "price",
+        "color",
+        "size"
+    ],
+    "type": "object"
+}
