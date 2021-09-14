@@ -25,9 +25,17 @@ Installations:
 
 You can check your chrome version from Crome browser by clicking -> menu -> help -> About Google Chrome
 Download chrome driver that fits your chrome version from https://sites.google.com/chromium.org/driver/downloads
-extract the file in folder 'chromedriver_win32\chromedriver.exe'
-for scrapy put in folder "scraper_edit\scraper_edit\spiders\chromedriver_win32\chromedriver.exe"
 
+extract the file in folder
+
+```sh
+'chromedriver_win32\chromedriver.exe'
+```
+for scrapy put in folder
+
+```sh
+scraper_edit\scraper_edit\spiders\chromedriver_win32\chromedriver.exe
+```
 Install requirements file with packages and python v 3.8
 ```sh
 pip install requirements.txt
